@@ -15,21 +15,19 @@ const displayMessage = (sender, message) => {
 
 const getChatbotResponse = async (userMessage) => {
     try{
-        const res = await fetch('/getChatbotResponse', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userMessage }),
+        const res = await fetch('http://localhost:3000/getChatbotResponse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userMessage }),
         })
-        
-        res.json().then(data => {
-            displayMessage("chatbot", data.chatbotResponse)
-        })
-
+        const data = await res.json()
+        displayMessage("chatbot", data.chatbotResponse)
+    
     } catch(e){
-        alert("Error occurred", e.message)
-        console.log("Error", error)
+        alert("Error occurred", e)
+        console.log("Error", e)
     }
 }
 

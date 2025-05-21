@@ -81,6 +81,20 @@ input[type="text"] {
 .chat-log p {
     margin: 10px 0;
 }
+.message{
+    background-color: #fff;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+}
+.chatbot{
+margin-right: auto;
+margin-top: .5rem;
+width: fit-content;
+}
+.user{
+    margin-left: auto;
+    width: fit-content;
+}
 .input-container input[type="text"] {
     flex: 1;
     height: 40px;
@@ -104,3 +118,4 @@ input[type="text"] {
 .input-container button:hover {
     background-color: #2966ac;
 }
+
