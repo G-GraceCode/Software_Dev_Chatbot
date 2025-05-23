@@ -94,6 +94,8 @@ width: fit-content;
 .user{
     margin-left: auto;
     width: fit-content;
+    margin-top: .5rem;
+
 }
 .input-container input[type="text"] {
     flex: 1;

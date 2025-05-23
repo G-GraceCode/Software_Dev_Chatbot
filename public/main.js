@@ -3,6 +3,8 @@ const userInput = document.getElementById('user-input');
 const sendMessage = document.getElementById("send_mess")
 
 const displayMessage = (sender, message) => {
+    if (message === " " || !message || message === "None") return
+    
     const messageElement = document.createElement('div');
     messageElement.classList.add('message', sender);
     // Wrap the message in a <p> tag
@@ -54,7 +56,11 @@ sendMessage.addEventListener("click", () => {
     // Display user's message
     displayMessage('user', message);
     // Call OpenAI API to get chatbot's response
-    getChatbotResponse(message);
+    if (message === " " || !message || message === "None"){
+        return alert("Please, Enter Text")
+    } else{
+        getChatbotResponse(message);
+    }
     // Clear user input
     userInput.value = '';
 })
