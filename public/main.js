@@ -33,7 +33,7 @@ const getChatbotResponse = async (userMessage) => {
     chatLog.appendChild(messageParagraph);
 
     try{
-        const res = await fetch('http://localhost:3000/getChatbotResponse', {
+        const res = await fetch('https://devchatbot-five.vercel.app/getChatbotResponse', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
