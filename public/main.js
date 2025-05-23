@@ -6,14 +6,30 @@ const displayMessage = (sender, message) => {
     const messageElement = document.createElement('div');
     messageElement.classList.add('message', sender);
     // Wrap the message in a <p> tag
-    const messageParagraph = document.createElement('p');
-    messageParagraph.innerText = message;
-    // Append the <p> tag to the message element
-    messageElement.appendChild(messageParagraph);
-    chatLog.appendChild(messageElement);
+    if(sender === "user"){
+        const messageParagraph = document.createElement('p');
+        messageParagraph.innerText = message;
+        messageElement.appendChild(messageParagraph);
+        chatLog.appendChild(messageElement);
+        return
+    }
+    if (sender === "chatbot"){
+        const messageRes = document.createElement('div');
+        messageRes.innerHTML = message
+        // Append the <p> tag to the message element
+        messageElement.appendChild(messageRes);
+        chatLog.appendChild(messageElement);
+        return
+    }
+
 }
 
 const getChatbotResponse = async (userMessage) => {
+
+    const messageParagraph = document.createElement('p');
+    messageParagraph.innerText = "Thinking ...";
+    chatLog.appendChild(messageParagraph);
+
     try{
         const res = await fetch('http://localhost:3000/getChatbotResponse', {
             method: 'POST',
@@ -22,8 +38,10 @@ const getChatbotResponse = async (userMessage) => {
             },
             body: JSON.stringify({ userMessage }),
         })
+        console.log("res-main", res)
         const data = await res.json()
         displayMessage("chatbot", data.chatbotResponse)
+        messageParagraph.innerText = "Show Thinking"
     
     } catch(e){
         alert("Error occurred", e)
