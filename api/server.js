@@ -18,7 +18,8 @@ app.use(
   }),
 );
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.status(200).send('Welcome to the Vercel-hosted API!');
+  // res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 app.post('/getChatbotResponse', async (req, res) => {
     const userMessage = req.body.userMessage;
