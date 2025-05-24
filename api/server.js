@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: ["http://127.0.0.1:5500", "https://devchatbot-five.vercel.app"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST"],
     credentials: true,
   }),
 );
@@ -40,7 +40,10 @@ app.post('/getChatbotResponse', async (req, res) => {
     console.log("mm", userMessage)
     // Use OpenAI API to generate a response
     // const chatbotResponse = await OpenAIAPI.generateResponse(userMessage);
+    
+    // Use Gemini API to generate a response
     const chatbotResponse = await GeminiAPI.generateResponse(userMessage);
+    
     // Send the response back to the client
     console.log("res", chatbotResponse)
     res.json({ chatbotResponse });
