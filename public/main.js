@@ -33,7 +33,7 @@ const getChatbotResponse = async (userMessage) => {
     chatLog.appendChild(messageParagraph);
 
     try{
-        const res = await fetch('/getChatbotResponse', {
+        const res = await fetch('https://dev-chatbot-api.onrender.com/getChatbotResponse', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
