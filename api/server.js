@@ -17,10 +17,24 @@ app.use(
     credentials: true,
   }),
 );
-app.get('/', (req, res) => {
-  res.status(200).send('Welcome to the Vercel-hosted API!');
-  // res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+
+if (process.env.NODE_ENV === "production") {
+  
+  app.get('/', (req, res) => {
+    res.status(200).send('Welcome to the Vercel-hosted API!');
+    // res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  });
+ 
+} else {
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
+  app.get("/", (req, res) => {
+    res.send("API is running.....");
+  });
+}
+
+
 app.post('/getChatbotResponse', async (req, res) => {
     const userMessage = req.body.userMessage;
     console.log("mm", userMessage)
@@ -32,8 +46,5 @@ app.post('/getChatbotResponse', async (req, res) => {
     res.json({ chatbotResponse });
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
 
 module.exports = app;
